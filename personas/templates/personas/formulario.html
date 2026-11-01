@@ -1,0 +1,38 @@
+{% extends "personas/base.html" %}
+{% block content %}
+  <div class="card">
+    <div class="card-header"><h4>{{ accion }} Persona</h4></div>
+    <div class="card-body">
+      <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label class="form-label">Nombre</label>
+          <input type="text" name="nombre" class="form-control" required
+                 value="{{ persona.nombre|default:'' }}">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Apellido</label>
+          <input type="text" name="apellido" class="form-control" required
+                 value="{{ persona.apellido|default:'' }}">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="email" name="email" class="form-control"
+                 value="{{ persona.email|default:'' }}">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Teléfono</label>
+          <input type="text" name="telefono" class="form-control"
+                 value="{{ persona.telefono|default:'' }}">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Fecha de nacimiento</label>
+          <input type="date" name="fecha_nacimiento" class="form-control"
+                 value="{{ persona.fecha_nacimiento|default:'' }}">
+        </div>
+        <button type="submit" class="btn btn-success">Guardar</button>
+        <a href="{% url 'lista_personas' %}" class="btn btn-secondary">Cancelar</a>
+      </form>
+    </div>
+  </div>
+{% endblock %}
